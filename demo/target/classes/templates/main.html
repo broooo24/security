@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>main</h1>
+<h1>Welcome </h1>
+<a href="/admin" sec:authorize = "hasAuthority('Administrator')">Admin</a>
+<a href="/contentmanager" sec:authorize = "hasAuthority('ContentManager')" >Content Manager</a>
+<a href="/loggedIn" sec:authorize = "hasAuthority('User')">Logged-in</a>
+<a href="/logout"> Logout</a>
+<ul >
+    <li >Felhasználó név: <span th:text ="${userSession.username}"></span></li>
+    <li> Csoportok: </li>
+    <ul th:each = "authority: ${userSession.roleAuthorities}">
+        <li ><span th:text = "${authority}"></span> </li>
+    </ul>
+
+    <li >Utolsó belépés:<span th:text ="${userSession.loggedInTime}"> </span></li>
+</ul>
 </body>
 </html>

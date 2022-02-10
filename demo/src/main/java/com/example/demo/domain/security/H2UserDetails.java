@@ -36,6 +36,7 @@ public class H2UserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         List<RoleEntity> entities = userEntity.getRoleEntities();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
